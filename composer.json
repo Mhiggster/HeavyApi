@@ -8,7 +8,9 @@
     ],
     "description": "make a hardly api request",
     "require": {
-        "php-amqplib/php-amqplib": "^2.9"
+        "php-amqplib/php-amqplib": "^2.9",
+        "guzzlehttp/guzzle": "~6.0",
+        "predis/predis": "^1.1"
     },
     "autoload": {
         "psr-4": {

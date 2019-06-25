@@ -13,8 +13,9 @@ class CachingData
     {
         $this->connection = new AMQPConnection('localhost', '5672', 'guest', 'guest');
         $this->channel = $this->connection->channel();
-
+        
         $this->execute();
+        
     }
 
     private function execute()
@@ -24,6 +25,7 @@ class CachingData
 
         // научится отпровлять потверждение
         $this->channel->basic_consume('SendRequestApi', '', false, true, false, false, [$this, 'handle']);
+        
 
         while(count($this->channel->callbacks)) {
             $this->channel->wait();
@@ -37,7 +39,7 @@ class CachingData
     public function handle($msg)
     {
         echo 'Do something nice' . "\n";
-        sleep(4);
+        sleep(2);
         echo 'our job is ended' . "\n";
         echo 'our message is: ' . $msg->body . "\n";
     }
