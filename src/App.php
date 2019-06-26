@@ -3,7 +3,8 @@ namespace App;
 
 use App\Jobs\ExecuteMessage;
 use Predis\Client as Cache;
- 
+use App\Acme\Show;
+
 class App
 {
     protected $publisher;
@@ -39,5 +40,13 @@ class App
         } else {
             echo 'No found';
         }
+    }
+
+
+
+    public function render()
+    {
+        return (new Show)->render();
+        
     }
 }
