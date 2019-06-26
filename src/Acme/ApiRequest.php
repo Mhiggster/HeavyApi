@@ -6,7 +6,7 @@ use Predis\Client as Cache;
 
 class ApiRequest
 {
-    public function makeRequest()
+    public function makeRequest($msgIndex)
     {
         $client = new Client();
 
@@ -24,9 +24,6 @@ class ApiRequest
 
 
         $redis = new Cache();
-        $redis->set('foo', 'bar');
-        echo $redis->get('foo');
-        echo '<pre>';
-        print_r($moviesOutput);
+        $redis->set('red', json_encode($moviesOutput));
     }
 }

@@ -35,7 +35,8 @@ class ExecuteMessage
     {
         $this->connection = new AMQPConnection('localhost', '5672', 'guest', 'guest');
         $this->channel = $this->connection->channel();
-        $this->message = new AMQPMessage('Run the cache for api result');
+        
+        $this->message = new AMQPMessage($message);
     }
 
     /**
@@ -45,6 +46,7 @@ class ExecuteMessage
      */
     public function runExecute()
     {
+
         $this->channel->queue_declare('SendRequestApi', false, false, false, false);
 
         $this->channel->basic_publish($this->message, '', 'SendRequestApi');

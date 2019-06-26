@@ -2,8 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Jobs\ExecuteMessage;
-
-for ($i=0; $i < 5; $i++) { 
-    (new ExecuteMessage)->runExecute();
-}
+use App\App;
+ 
+(new App)->init();
+(new App)->show();
