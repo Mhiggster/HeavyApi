@@ -24,10 +24,8 @@ class App
 
     public function sendJob()
     {
-        for ($i=1; $i <= 3; $i++) {
-            $this->publisher = new ExecuteMessage($i);
-            $this->publisher->runExecute();
-        }
+        $this->publisher = new ExecuteMessage('GET MOVIES');
+        $this->publisher->runExecute();
     }
 
     public function processJob()

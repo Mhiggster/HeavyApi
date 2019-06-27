@@ -14,26 +14,37 @@ class ApiRequest
 
     private $guzzle;
 
+    /**
+     * Undocumented function
+     */
     public function __construct()
     {
         $this->cache = new Cache;
         $this->guzzle = new Client;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $msgIndex
+     * @return void
+     */
     public function makeRequest($msgIndex)
     {
         $moviesOutput = [];
-            
-        for ($i=1; $i < 90; $i++) { 
+        
+
+        // писать в лог если придут пустые данные
+        for ($j = 0, $i=30; $i < 120; $i++, $j++) { 
             $movies = $this->guzzle->request('GET', 'http://api.themoviedb.org/3/discover/movie?api_key=075d47c45127e490b135a1b151a5b596&primary_release_date.gte=2018-01-03&page=' . $i);
 
             $results = json_decode( $movies->getBody()->getContents() )->results;
             $lastMovieInThisPage = $results[count($results) - 1];
 
-            $moviesOutput[$i] = $lastMovieInThisPage;
+            $moviesOutput[$j] = $lastMovieInThisPage;
         }
 
 
-        $this->cache->set('red', json_encode($moviesOutput));
+        $this->cache->set('movies', json_encode($moviesOutput));
     }
 }

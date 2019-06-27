@@ -8,6 +8,5 @@
 </head>
 <body>
     <?php print_r($this->data); ?>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident dolores, natus dolorum optio ad, libero dignissimos ea dolorem vero quas pariatur. Natus quos possimus odit? Dolorum provident inventore animi culpa.
 </body>
 </html>
