@@ -42,8 +42,10 @@ class CachingData
 
     public function handle($msg)
     {
+        // write a log
         echo 'make something' . "\n";
         $this->apiRequest->makeRequest($msg->body);
+        // and api Request
         echo 'Api requests is done...';
     }
 

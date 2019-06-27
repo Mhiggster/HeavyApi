@@ -10,7 +10,8 @@
     "require": {
         "php-amqplib/php-amqplib": "^2.9",
         "guzzlehttp/guzzle": "~6.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "monolog/monolog": "^1.24"
     },
     "autoload": {
         "psr-4": {

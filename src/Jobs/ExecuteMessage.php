@@ -46,13 +46,20 @@ class ExecuteMessage
      */
     public function runExecute()
     {
-
+        // make connection
+        // make request
+        // close connection
         $this->channel->queue_declare('SendRequestApi', false, false, false, false);
 
         $this->channel->basic_publish($this->message, '', 'SendRequestApi');
 
         $this->channel->close();
         $this->connection->close();
+    }
+
+    public function closeConnection()
+    {
+        
     }
 
     
