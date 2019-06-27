@@ -2,8 +2,11 @@
 namespace App\Acme;
 
 use Predis\Client as Cache;
+use App\Acme\Log;
+
 class Show
 {
+    use Log;
 
     private $path;
 
@@ -11,6 +14,7 @@ class Show
 
     public function __construct()
     {
+        $this->logInit();
         $this->cache = new Cache;
         $this->path = __DIR__ . '/../../movies.php';
     }
@@ -31,12 +35,15 @@ class Show
             
             
         } catch (\Throwable $th) {
-            // write log monolog
-            echo $th->getMessage();
+            $this->log->warning('Error From Show.php : ' . $th->getMessage(), [
+                'options' => $th,
+            ]);
+            $th->getMessage();
             // make redirect or throw 404
             $this->path = __DIR__ . '/../../404.php';
         }
-
+        
+        
         $this->getData();
         require $this->path;
         
