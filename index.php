@@ -2,6 +2,19 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\App;
+
  
-(new App)->init();
+
+try {
+    /*
+     * make Laravel Ioc container
+     * */
+    $container = \Illuminate\Container\Container::getInstance();
+
+    $app = $container->make(\Pool\App::class);
+
+
+    $app->init();
+} catch (Exception $e) {
+    echo $e->getMessage();
+}

@@ -1,5 +1,5 @@
 <?php
-namespace App\Acme;
+namespace Pool\Acme;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;

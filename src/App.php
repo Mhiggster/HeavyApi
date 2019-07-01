@@ -1,26 +1,63 @@
 <?php
-namespace App;
+namespace Pool;
 
-use App\Jobs\ExecuteMessage;
+use Pool\Acme\FrontPage;
+use Pool\Acme\Application;
+use Pool\Jobs\CachingData;
+use Pool\Jobs\ExecuteMessage;
 
-use App\Acme\Show;
-use App\Jobs\CachingData;
-
-class App
+class App extends Application
 {
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     protected $publisher;
 
-    protected $show;
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
+    protected $page;
 
-    public function __construct()
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
+    private $container;
+
+    /**
+     * Undocumented function
+     *
+     * @param Container $container
+     * @param FrontPage $frontPage
+     */
+    public function __construct(Container $container)
     {
-        $this->show = new Show();
+        $this->container = $container;
+        $this->bindingContracts();
     }
 
     public function init()
     {
-        $this->show->render();
+        $this->page->render();
     }
+
+    
+
+    private function bindingContracts()
+    {
+
+    }
+
+    // public function clearCache()
+    // {
+        
+    // }
+
 
     public function sendJob()
     {
@@ -31,12 +68,6 @@ class App
     public function processJob()
     {
         new CachingData();
-    }
-
-
-    public function clearCache()
-    {
-        
     }
 
 }
