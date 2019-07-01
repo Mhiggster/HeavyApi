@@ -3,12 +3,17 @@ namespace App\Acme;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Monolog\Handler\FirePHPHandler;
 
-class Log
+trait Log
 {
-    public function write($message, $level)
+    protected $log;
+
+    protected $logPath;
+
+    protected function logInit()
     {
-        
+        $this->logPath = __DIR__ . '/../../app.log';
+        $this->log = new Logger('name');
+        $this->log->pushHandler(new StreamHandler($this->logPath, Logger::WARNING));
     }
 }

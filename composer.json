@@ -12,7 +12,11 @@
         "guzzlehttp/guzzle": "~6.0",
         "predis/predis": "^1.1",
         "monolog/monolog": "^1.24",
+<<<<<<< HEAD
         "tightenco/collect": "^5.8"
+=======
+        "firebase/php-jwt": "^5.0"
+>>>>>>> 9e337c10d8574759ef35df6cd7fa1ad79e2df1ed
     },
     "autoload": {
         "psr-4": {
