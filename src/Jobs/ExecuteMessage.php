@@ -24,6 +24,12 @@ class ExecuteMessage extends JobsConnectionManage
         
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $message
+     * @return void
+     */
     public function setMessage(string $message = '')
     {
         $this->message = new AMQPMessage($message);
