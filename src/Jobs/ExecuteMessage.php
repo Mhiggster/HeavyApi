@@ -1,41 +1,31 @@
 <?php
-namespace App\Jobs;
+namespace Pool\Jobs;
 
 use PhpAmqpLib\Message\AMQPMessage;
-use PhpAmqpLib\Connection\AMQPConnection;
+use Pool\Jobs\JobsConnectionManage;
 
-
-class ExecuteMessage
+class ExecuteMessage extends JobsConnectionManage
 {
     /**
      * Undocumented variable
      *
      * @var [type]
-     */
-    protected $connection;
-
-    /**
-     * Undocumented variable
-     *
-     * @var [type]
      */ 
-    protected $message;
-    
-    /**
-     * Undocumented variable
-     *
-     * @var [type]
-     */
-    protected $channel;
+    private $message;
 
     /**
      * Undocumented function
+     *
+     * @param string $message
      */
-    public function __construct($message = null)
+    public function __construct()
     {
-        $this->connection = new AMQPConnection('localhost', '5672', 'guest', 'guest');
-        $this->channel = $this->connection->channel();
+        parent::__construct();
         
+    }
+
+    public function setMessage(string $message = '')
+    {
         $this->message = new AMQPMessage($message);
     }
 
@@ -53,13 +43,7 @@ class ExecuteMessage
 
         $this->channel->basic_publish($this->message, '', 'SendRequestApi');
 
-        $this->channel->close();
-        $this->connection->close();
-    }
-
-    public function closeConnection()
-    {
-        
+        $this->closeConnection();
     }
 
     

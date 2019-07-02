@@ -41,24 +41,24 @@ class FrontPage
 
     public function render()
     {
-        // try {
-        //     if( !file_exists($this->path) ) {
-        //         throw new \Exception('This file ' . $this->path . ' does not exists');
-        //     }
+        try {
+            if( !file_exists($this->path) ) {
+                throw new \Exception('This file ' . $this->path . ' does not exists');
+            }
             
             
-        // } catch (\Throwable $th) {
-        //     $this->log->warning('Error From Show.php : ' . $th->getMessage(), [
-        //         'options' => $th,
-        //     ]);
-        //     $th->getMessage();
-        //     // make redirect or throw 404
-        //     $this->path = __DIR__ . '/../../404.php';
-        // }
+        } catch (\Throwable $th) {
+            $this->log->warning('Error From Show.php : ' . $th->getMessage(), [
+                'options' => $th,
+            ]);
+            $th->getMessage();
+            // make redirect or throw 404
+            $this->path = __DIR__ . '/../../404.php';
+        }
         
         
-        // $this->getData();
-        // require $this->path;
+        $this->getData();
+        require $this->path;
         
     }
 }

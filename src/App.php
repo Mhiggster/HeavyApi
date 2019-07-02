@@ -5,6 +5,7 @@ use Pool\Acme\FrontPage;
 use Pool\Acme\Application;
 use Pool\Jobs\CachingData;
 use Pool\Jobs\ExecuteMessage;
+use Illuminate\Container\Container;
 
 class App extends Application
 {
@@ -20,14 +21,14 @@ class App extends Application
      *
      * @var [type]
      */
-    protected $page;
+    private $container;
 
     /**
      * Undocumented variable
      *
      * @var [type]
      */
-    private $container;
+    private $page;
 
     /**
      * Undocumented function
@@ -38,36 +39,27 @@ class App extends Application
     public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->bindingContracts();
     }
 
     public function init()
     {
+        $this->bindingContracts();
+        $this->setInstances();
         $this->page->render();
+
     }
 
     
 
     private function bindingContracts()
     {
-
+        $this->container->bind(\Pool\Contracts\Cache::class, \Pool\Acme\Cache\Redis::class);
     }
 
-    // public function clearCache()
-    // {
-        
-    // }
 
-
-    public function sendJob()
+    private function setInstances()
     {
-        $this->publisher = new ExecuteMessage('GET MOVIES');
-        $this->publisher->runExecute();
-    }
-
-    public function processJob()
-    {
-        new CachingData();
+        $this->page = $this->container->make(FrontPage::class);
     }
 
 }

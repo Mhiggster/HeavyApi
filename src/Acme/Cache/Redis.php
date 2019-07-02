@@ -28,4 +28,5 @@ class Redis implements Cache
     {
 
     }
+
 }

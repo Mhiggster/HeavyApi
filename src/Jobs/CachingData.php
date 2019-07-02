@@ -1,25 +1,16 @@
 <?php
 namespace App\Jobs;
 
-use PhpAmqpLib\Connection\AMQPConnection;
 use App\Acme\ApiRequest;
+use Pool\Jobs\JobsConnectionManage;
 
-class CachingData
+class CachingData extends JobsConnectionManage
 {
-    protected $connection;
-
-    protected $channel;
-
     protected $apiRequest;
 
-    public function __construct()
+    public function __construct(ApiRequest $apiRequest)
     {
-        $this->connection = new AMQPConnection('localhost', '5672', 'guest', 'guest');
-        $this->channel = $this->connection->channel();
-        $this->apiRequest = new ApiRequest;
-
-        $this->execute();
-        
+        $this->apiRequest = $apiRequest;
     }
 
     private function execute()
@@ -35,18 +26,12 @@ class CachingData
             $this->channel->wait();
         }
 
-
-        $this->channel->close();
-        $this->connection->close();
+        $this->closeConnection();
     }
 
     public function handle($msg)
     {
-        // write a log
-        echo 'make something' . "\n";
         $this->apiRequest->makeRequest($msg->body);
-        // and api Request
-        echo 'Api requests is done...';
     }
 
 
