@@ -1,39 +1,42 @@
 <?php
-namespace App\Jobs;
+namespace Pool\Jobs;
 
-use App\Acme\ApiRequest;
+use Pool\Acme\ApiRequest;
 use Pool\Jobs\JobsConnectionManage;
 
 class CachingData extends JobsConnectionManage
 {
-    protected $apiRequest;
+    protected $garbage;
 
-    public function __construct(ApiRequest $apiRequest)
+    public function __construct(ApiRequest $garbage)
     {
-        $this->apiRequest = $apiRequest;
+        parent::__construct();
+        $this->garbage = $garbage;
     }
 
-    private function execute()
-    {
-
+    private function makeRequest() {
         $this->channel->queue_declare('SendRequestApi', false, false, false, false);
-
         // научится отпровлять потверждение
         $this->channel->basic_consume('SendRequestApi', '', false, true, false, false, [$this, 'handle']);
-        
 
         while(count($this->channel->callbacks)) {
             $this->channel->wait();
         }
+    }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    private function runExecute()
+    {
+        $this->makeRequest();
         $this->closeConnection();
     }
 
     public function handle($msg)
     {
-        $this->apiRequest->makeRequest($msg->body);
+        $this->garbage->makeRequest($msg->body);
     }
-
-
-
 }

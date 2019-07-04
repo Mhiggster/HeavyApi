@@ -14,19 +14,33 @@ class ExecuteMessage extends JobsConnectionManage
     private $message;
 
     /**
-     * Undocumented function
+     * Make connection
      *
      * @param string $message
      */
     public function __construct()
     {
         parent::__construct();
-        
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $message
+     * @return void
+     */
     public function setMessage(string $message = '')
     {
         $this->message = new AMQPMessage($message);
+        return $this;
+    }
+
+    private function makeRequest()
+    {
+        // make request
+        $this->channel->queue_declare('SendRequestApi', false, false, false, false);
+
+        $this->channel->basic_publish($this->message, '', 'SendRequestApi');
     }
 
     /**
@@ -36,13 +50,7 @@ class ExecuteMessage extends JobsConnectionManage
      */
     public function runExecute()
     {
-        // make connection
-        // make request
-        // close connection
-        $this->channel->queue_declare('SendRequestApi', false, false, false, false);
-
-        $this->channel->basic_publish($this->message, '', 'SendRequestApi');
-
+        $this->makeRequest();
         $this->closeConnection();
     }
 

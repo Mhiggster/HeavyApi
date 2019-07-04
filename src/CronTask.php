@@ -4,20 +4,21 @@ namespace Pool;
 use Pool\Jobs\CachingData;
 use Pool\Jobs\ExecuteMessage;
 
-class CrontTask
+class CronTask
 {
-    private $publisher;
-    private $cachingData;
+    private $actions = [];
 
-    public function sendJob()
+    public function __construct(ExecuteMessage $executeMessage, CachingData $cachingData)
     {
-        $this->publisher = new ExecuteMessage('GET MOVIES');
-        $this->publisher->runExecute();
+        $this->actions[] = $executeMessage->setMessage('GET MOVIES');
+        $this->actions[] = $cachingData;
     }
 
-    // Поробывать через container->call
-    public function processJob(CachingData $cachingData)
+    public function runTasks()
     {
-        $this->cachingData = $cachingData;
+        foreach($this->actions as $action)
+        {
+            $action->runExecute();
+        }
     }
 }

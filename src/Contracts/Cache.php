@@ -8,19 +8,19 @@ interface Cache
      *
      * @return void
      */
-    public function set(string $key, string $data);
+    public function set(string $key, string $data) : void;
 
     /**
      * Undocumented function
      *
      * @return void
      */
-    public function get(string $key) : string;
+    public function get(string $key) : ?string;
 
     /**
      * Undocumented function
      *
      * @return void
      */
-    public function clear(string $key);
+    public function clear(string $key) : void;
 }
