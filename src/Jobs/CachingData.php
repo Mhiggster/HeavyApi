@@ -1,7 +1,7 @@
 <?php
 namespace Pool\Jobs;
 
-use Pool\Acme\Garbage;
+use Pool\Contracts\Garbage;
 use Pool\Jobs\JobsConnectionManage;
 
 class CachingData extends JobsConnectionManage

@@ -38,6 +38,8 @@ class App extends Application
      */
     private $cron;
 
+    private $envRequest;
+
     /**
      * Undocumented function
      *
@@ -47,9 +49,8 @@ class App extends Application
     public function __construct(Container $container)
     {
         $this->container = $container;
-
-        $this->bindingContracts();
-        $this->setInstances();
+        // throw the notice 
+        $this->envRequest = $_SERVER['SERVER_NAME'];
     }
 
     /**
@@ -59,18 +60,22 @@ class App extends Application
      */
     public function init()
     {
-        $this->page->render();
+        $this->bindingContracts();
+        $this->setInstances();
+
+        $this->selectRequest();
+       
     }
 
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function taskRunner()
+    private function selectRequest()
     {
+        if(isset($this->envRequest)) {
+            return $this->page->render();
+        }
         $this->cron->runTasks();
     }
+
+        
 
     /**
      * Undocumented function
@@ -80,6 +85,7 @@ class App extends Application
     private function bindingContracts()
     {
         $this->container->bind(\Pool\Contracts\Cache::class, \Pool\Acme\Cache\Redis::class);
+        $this->container->bind(\Pool\Contracts\Garbage::class, \Pool\Acme\ExampleRequest::class);
     }
 
     /**

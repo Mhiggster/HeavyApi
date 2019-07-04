@@ -3,12 +3,13 @@ namespace Pool\Acme;
 
 use GuzzleHttp\Client;
 use Pool\Contracts\Cache;
+use Pool\Contracts\Garbage;
 
 /**
  * TODO rename this class to Garbage
  * TODO make like inteface and implements Example ApiRequest
  */
-class Garbage
+class ExampleRequest implements Garbage
 {
     /**
      * Undocumented variable
@@ -63,7 +64,7 @@ class Garbage
         }
 
         // write cache
-        $this->cache->set('movies', json_encode($moviesOutput));
-        // $this->cache->clear('movies');
+        // $this->cache->set('movies', json_encode($moviesOutput));
+        $this->cache->clear('movies');
     }
 }

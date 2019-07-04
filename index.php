@@ -10,11 +10,11 @@ try {
      * make Laravel Ioc container
      * */
     $container = \Illuminate\Container\Container::getInstance();
-
     $app = $container->make(\Pool\App::class);
 
-
     $app->init();
+
+
 } catch (Exception $e) {
     echo $e->getMessage();
 }
