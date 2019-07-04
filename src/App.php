@@ -85,7 +85,7 @@ class App extends Application
     private function bindingContracts()
     {
         $this->container->bind(\Pool\Contracts\Cache::class, \Pool\Acme\Cache\Redis::class);
-        $this->container->bind(\Pool\Contracts\Garbage::class, \Pool\Acme\ExampleRequest::class);
+        $this->container->bind(\Pool\Contracts\Garbage::class, \Pool\Acme\Garbages\ExampleRequest::class);
     }
 
     /**
