@@ -6,6 +6,7 @@ use Pool\Contracts\Cache;
 
 /**
  * TODO rename this class to Garbage
+ * TODO make like inteface and implements Example ApiRequest
  */
 class Garbage
 {
