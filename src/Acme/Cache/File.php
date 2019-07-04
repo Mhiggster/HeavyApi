@@ -7,7 +7,7 @@ class File implements Cache
 {
     private $client;
 
-    public function __construct(Client $client)
+    public function __construct(SomeClass $client)
     {
         $this->client = $client;
     }

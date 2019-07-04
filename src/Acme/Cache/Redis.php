@@ -49,7 +49,7 @@ class Redis implements Cache
      */
     public function clear(string $key) : void
     {
-        echo 'clear cache';
+        $this->client->flushAll();
     }
 
 }

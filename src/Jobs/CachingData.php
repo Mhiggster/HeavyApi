@@ -1,14 +1,14 @@
 <?php
 namespace Pool\Jobs;
 
-use Pool\Acme\ApiRequest;
+use Pool\Acme\Garbage;
 use Pool\Jobs\JobsConnectionManage;
 
 class CachingData extends JobsConnectionManage
 {
     protected $garbage;
 
-    public function __construct(ApiRequest $garbage)
+    public function __construct(Garbage $garbage)
     {
         parent::__construct();
         $this->garbage = $garbage;
@@ -29,7 +29,7 @@ class CachingData extends JobsConnectionManage
      *
      * @return void
      */
-    private function runExecute()
+    public function runExecute()
     {
         $this->makeRequest();
         $this->closeConnection();
@@ -37,6 +37,8 @@ class CachingData extends JobsConnectionManage
 
     public function handle($msg)
     {
+        echo 'Hanle starts...' . "\n";
         $this->garbage->makeRequest($msg->body);
+        echo 'work is done!';
     }
 }

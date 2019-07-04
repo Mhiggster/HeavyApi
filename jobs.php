@@ -1,7 +1,23 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+echo '<pre>';
+if(isset($_SERVER['SERVER_NAME']))
+{
+    echo 'FROM BROWSER';
+} else {
+    echo 'FROM TERMINAL';
+}
+// require_once __DIR__ . '/vendor/autoload.php';
 
-use App\App;
+// try {
+//     /*
+//      * make Laravel Ioc container
+//      * */
+//     $container = \Illuminate\Container\Container::getInstance();
 
-(new App)->sendJob();
-(new App)->processJob();
+//     $app = $container->make(\Pool\App::class);
+
+
+//     $app->taskRunner();
+// } catch (Exception $e) {
+//     echo $e->getMessage();
+// }
