@@ -76,6 +76,7 @@ class App extends Application
         $this->bindingContracts();
         $this->setInstances();
 
+        // it will be depracated
         // $this->selectRequest();
 
         $this->buildRouter();
