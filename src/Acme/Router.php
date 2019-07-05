@@ -47,6 +47,11 @@ class Router
         
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function trimedUri()
     {
         if (false !== $pos = strpos($this->uri, '?')) {
@@ -92,6 +97,13 @@ class Router
         return $this;
         
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $container
+     * @return void
+     */
     public function callHandler($container)
     {
         // Получаем контроллер и метод
@@ -109,7 +121,14 @@ class Router
         // Вызываем нужный контроллер с нужным методом и параметрами
         call_user_func_array(array($controllerClass, $classMethod), $paramsHandlers);
     }
-    // Rename this Action
+    
+
+    /**
+     * Undocumented function
+     *
+     * @param Container $container
+     * @return void
+     */
     public function runRouter(Container $container)
     {
         // Подключаем Роуты
