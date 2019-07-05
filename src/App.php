@@ -3,6 +3,7 @@ namespace Pool;
 
 use Pool\CronTask;
 use Pool\Acme\FrontPage;
+use Pool\Acme\Router;
 use Pool\Acme\Application;
 use Pool\Jobs\CachingData;
 use Pool\Jobs\ExecuteMessage;
@@ -38,6 +39,18 @@ class App extends Application
      */
     private $cron;
 
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
+    private $router;
+
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     private $envRequest;
 
     /**
@@ -63,16 +76,33 @@ class App extends Application
         $this->bindingContracts();
         $this->setInstances();
 
-        $this->selectRequest();
+        // $this->selectRequest();
+
+        $this->buildRouter();
        
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function selectRequest()
     {
         if(isset($this->envRequest)) {
             return $this->page->render();
         }
         $this->cron->runTasks();
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    private function buildRouter()
+    {
+        $this->container->call([$this->router, 'runRouter']);
     }
 
         
@@ -95,8 +125,9 @@ class App extends Application
      */
     private function setInstances()
     {
-        $this->page = $this->container->make(FrontPage::class);
-        $this->cron = $this->container->make(CronTask::class);
+        $this->page   = $this->container->make(FrontPage::class);
+        $this->cron   = $this->container->make(CronTask::class);
+        $this->router = $this->container->make(Router::class);
     }
 
 }

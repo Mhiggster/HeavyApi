@@ -1,5 +1,5 @@
 <?php
-namespace Pool\Acme;
+namespace Pool\Acme\Garbages;
 
 use GuzzleHttp\Client;
 use Pool\Contracts\Cache;
@@ -34,6 +34,9 @@ class ExampleRequest implements Garbage
 
     /**
      * Undocumented function
+     *
+     * @param Cache $cache
+     * @param Client $client
      */
     public function __construct(Cache $cache, Client $client)
     {
