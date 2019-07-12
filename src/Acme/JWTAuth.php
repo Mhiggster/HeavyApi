@@ -1,5 +1,5 @@
 <?php
-namespace App\Acme;
+namespace Pool\Acme;
 
 use Firebase\JWT\JWT;
 
@@ -55,9 +55,10 @@ class JWTAuth
         $this->algorithm = 'RS256';
     }
 
-    public function makePayload(int $user_id) : void
+    public function makePayload(int $user_id) : JWTAuth
     {
         $this->payload['user_id'] = $user_id;
+        return $this;
     }
 
     public function render()
@@ -71,13 +72,13 @@ class JWTAuth
 
     public function encode()
     {
-        $this->token = JWT::encode($payload, $this->privateKey, $this->algorithm);
+        return JWT::encode($this->payload, $this->privateKey, $this->algorithm);
     }
 
 
-    public function decode()
+    public function decode($token)
     {
-        $decoded = JWT::decode($this->token, $this->publicKey, array($this->algorithm));
+        return JWT::decode($token, $this->publicKey, array($this->algorithm));
     }
 
     // for what i dont remember хотя я вспомнил для статуса ответов

@@ -117,6 +117,7 @@ class App extends Application
     {
         $this->container->bind(\Pool\Contracts\Cache::class, \Pool\Acme\Cache\Redis::class);
         $this->container->bind(\Pool\Contracts\Garbage::class, \Pool\Acme\Garbages\ExampleRequest::class);
+        // $this->container->bind(\Psr\Http\Message\RequestInterface::class, \GuzzleHttp\Psr7\Request::class);
     }
 
     /**
@@ -126,7 +127,6 @@ class App extends Application
      */
     private function setInstances()
     {
-        $this->page   = $this->container->make(FrontPage::class);
         $this->cron   = $this->container->make(CronTask::class);
         $this->router = $this->container->make(Router::class);
     }
