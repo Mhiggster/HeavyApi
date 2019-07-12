@@ -18,10 +18,10 @@ class Home
     /**
      * Undocumented function
      */
-    public function __construct()
+    public function __construct(Cache $cache)
     {
         $this->logInit();
-        // $this->cache = $cache;
+        $this->cache = $cache;
     }
 
     /**

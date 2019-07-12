@@ -129,9 +129,7 @@ class Router
         // Method name
         $classMethod = $explodeHandlers[1];
         // create controller instance
-        // dd(new \Pool\Pages\Home());
-        // $controllerClass = $container->make(\Pool\Pages\Home::class);
-        
+        $controllerClass = $container->make($controllerClass);
         // call the desired controller with method and parametrs
         call_user_func_array(array($controllerClass, $classMethod), $paramsHandlers);
     }
