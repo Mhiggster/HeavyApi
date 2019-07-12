@@ -1,8 +1,8 @@
 <?php
-namespace Pool\Jobs;
+namespace Pool\Acme\Jobs;
 
 use PhpAmqpLib\Message\AMQPMessage;
-use Pool\Jobs\JobsConnectionManage;
+use Pool\Acme\Jobs\JobsConnectionManage;
 
 class ExecuteMessage extends JobsConnectionManage
 {

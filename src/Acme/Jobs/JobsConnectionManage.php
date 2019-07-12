@@ -1,5 +1,5 @@
 <?php
-namespace Pool\Jobs;
+namespace Pool\Acme\Jobs;
 
 use PhpAmqpLib\Connection\AMQPConnection;
 

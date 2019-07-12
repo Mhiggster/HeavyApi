@@ -3,6 +3,7 @@ namespace Pool\Acme;
 
 use Illuminate\Container\Container;
 
+
 class Router
 {
     /**
@@ -40,7 +41,7 @@ class Router
     {
         $this->uri                = $_SERVER['REQUEST_URI'];
         $this->httpMethod         = $_SERVER['REQUEST_METHOD'];
-        $this->controllerContains = '\Pool\Acme\Pagers\\';
+        $this->controllerContains = '\Pool\Pages\\';
 
         $this->routeActions       = [];
     }
@@ -115,7 +116,7 @@ class Router
      * @param [type] $container
      * @return void
      */
-    public function callHandler(Container $container) : void
+    public function callHandler($container) : void
     {
         // get the controller and method
         $controllerHandlers = reset($this->routeActions);
@@ -128,7 +129,9 @@ class Router
         // Method name
         $classMethod = $explodeHandlers[1];
         // create controller instance
-        $controllerClass = $container->make($controllerClass);
+        // dd(new \Pool\Pages\Home());
+        // $controllerClass = $container->make(\Pool\Pages\Home::class);
+        
         // call the desired controller with method and parametrs
         call_user_func_array(array($controllerClass, $classMethod), $paramsHandlers);
     }

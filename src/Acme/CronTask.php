@@ -1,8 +1,8 @@
 <?php
-namespace Pool;
+namespace Pool\Acme;
 
-use Pool\Jobs\CachingData;
-use Pool\Jobs\ExecuteMessage;
+use Pool\Acme\Jobs\CachingData;
+use Pool\Acme\Jobs\ExecuteMessage;
 
 class CronTask
 {
@@ -16,11 +16,11 @@ class CronTask
     /**
      * Init actions
      *
-     * @param \Pool\Jobs\ExecuteMessage $executeMessage
-     * @param \Pool\Jobs\CachingData $cachingData
+     * @param \Pool\Acme\Jobs\ExecuteMessage $executeMessage
+     * @param \Pool\Acme\Jobs\CachingData $cachingData
      * @return void
      */
-    public function __construct(ExecuteMessage $executeMessage, CachingData $cachingData) : void
+    public function __construct(ExecuteMessage $executeMessage, CachingData $cachingData)
     {
         $this->actions[] = $executeMessage->setMessage('GET MOVIES');
         $this->actions[] = $cachingData;

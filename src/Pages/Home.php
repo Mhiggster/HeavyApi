@@ -1,8 +1,9 @@
 <?php
-namespace Pool\Acme\Pagers;
+namespace Pool\Pages;
 
 use Pool\Acme\Log;
 use Pool\Contracts\Cache;
+
 class Home
 {
     use Log;
@@ -17,10 +18,10 @@ class Home
     /**
      * Undocumented function
      */
-    public function __construct(Cache $cache)
+    public function __construct()
     {
         $this->logInit();
-        $this->cache = $cache;
+        // $this->cache = $cache;
     }
 
     /**

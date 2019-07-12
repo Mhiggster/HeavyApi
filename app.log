@@ -1,0 +1,4 @@
+[2019-07-12 15:29:47] name.WARNING: Error From Show.php : This file  does not exists {"options":"[object] (Exception(code: 0): This file  does not exists at /var/www/rabbit/src/Pages/Home.php:48)"} []
+[2019-07-12 15:43:21] name.WARNING: Error From Show.php : This file  does not exists {"options":"[object] (Exception(code: 0): This file  does not exists at /var/www/rabbit/src/Pages/Home.php:49)"} []
+[2019-07-12 15:43:27] name.WARNING: Error From Show.php : This file  does not exists {"options":"[object] (Exception(code: 0): This file  does not exists at /var/www/rabbit/src/Pages/Home.php:49)"} []
+[2019-07-12 15:54:54] name.WARNING: Error From Show.php : This file  does not exists {"options":"[object] (Exception(code: 0): This file  does not exists at /var/www/rabbit/src/Pages/Home.php:48)"} []

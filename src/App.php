@@ -1,12 +1,9 @@
 <?php
 namespace Pool;
 
-use Pool\CronTask;
-use Pool\Acme\FrontPage;
+use Pool\Acme\CronTask;
 use Pool\Acme\Router;
 use Pool\Acme\Application;
-use Pool\Jobs\CachingData;
-use Pool\Jobs\ExecuteMessage;
 use Illuminate\Container\Container;
 
 class App extends Application
@@ -57,7 +54,6 @@ class App extends Application
      * Undocumented function
      *
      * @param Container $container
-     * @param FrontPage $frontPage
      */
     public function __construct(Container $container)
     {
@@ -99,7 +95,7 @@ class App extends Application
      */
     private function buildRouter()
     {
-        $this->container->call([$this->router, 'runRouter']);
+        dd($this->container->call([$this->router, 'runRouter']));
     }
 
         
