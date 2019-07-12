@@ -2,9 +2,6 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-
- 
-
 try {
     /*
      * make Laravel Ioc container
@@ -15,6 +12,6 @@ try {
     $app->init();
 
 
-} catch (Exception $e) {
+} catch ( $e) {
     echo $e->getMessage();
 }

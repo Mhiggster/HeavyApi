@@ -67,7 +67,7 @@ class App extends Application
     }
 
     /**
-     * Undocumented function
+     * Bootstrapin our application
      *
      * @return void
      */
@@ -76,11 +76,7 @@ class App extends Application
         $this->bindingContracts();
         $this->setInstances();
 
-        // it will be depracated
-        // $this->selectRequest();
-
-        $this->buildRouter();
-       
+        $this->selectRequest();
     }
 
     /**
@@ -91,7 +87,7 @@ class App extends Application
     private function selectRequest()
     {
         if(isset($this->envRequest)) {
-            return $this->page->render();
+            return $this->buildRouter();
         }
         $this->cron->runTasks();
     }

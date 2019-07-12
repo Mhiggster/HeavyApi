@@ -7,30 +7,31 @@ use Pool\Jobs\ExecuteMessage;
 class CronTask
 {
     /**
-     * Undocumented variable
+     * Cron actions container
      *
      * @var array
      */
     private $actions = [];
 
     /**
-     * Undocumented function
+     * Init actions
      *
-     * @param ExecuteMessage $executeMessage
-     * @param CachingData $cachingData
+     * @param \Pool\Jobs\ExecuteMessage $executeMessage
+     * @param \Pool\Jobs\CachingData $cachingData
+     * @return void
      */
-    public function __construct(ExecuteMessage $executeMessage, CachingData $cachingData)
+    public function __construct(ExecuteMessage $executeMessage, CachingData $cachingData) : void
     {
         $this->actions[] = $executeMessage->setMessage('GET MOVIES');
         $this->actions[] = $cachingData;
     }
 
     /**
-     * Undocumented function
+     * Run tasks polymorphically
      *
      * @return void
      */
-    public function runTasks()
+    public function runTasks() : void
     {
         foreach($this->actions as $action)
         {
