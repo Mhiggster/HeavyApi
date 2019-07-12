@@ -95,7 +95,7 @@ class App extends Application
      */
     private function buildRouter()
     {
-        dd($this->container->call([$this->router, 'runRouter'], ['container' => $this->container]));
+        $this->container->call([$this->router, 'runRouter'], ['container' => $this->container]);
     }
 
         

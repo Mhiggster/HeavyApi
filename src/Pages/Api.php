@@ -6,14 +6,39 @@ use Pool\Acme\JWTAuth;
 
 class Api
 {
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     private $username;
 
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     private $password;
 
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     private $email;
 
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     private $jwt;
 
+    /**
+     * Undocumented function
+     *
+     * @param JWTAuth $jwt
+     */
     public function __construct(JWTAuth $jwt)
     {
         $this->username = 'miras';
@@ -23,7 +48,11 @@ class Api
         $this->jwt = $jwt;
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function validation()
     {
         if($_GET['name'] === $this->username && $_GET['password'] === $this->password) {
@@ -32,6 +61,11 @@ class Api
         return false;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function token()
     {
         if(!$this->validation()) {
@@ -41,7 +75,11 @@ class Api
         dd($this->jwt->makePayload(1)->encode());
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function movies()
     {
         // $token = $_GET['token'];

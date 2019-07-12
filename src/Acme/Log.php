@@ -6,10 +6,25 @@ use Monolog\Handler\StreamHandler;
 
 trait Log
 {
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     protected $log;
 
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     protected $logPath;
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     protected function logInit()
     {
         $this->logPath = __DIR__ . '/../../app.log';

@@ -7,16 +7,15 @@ use Pool\Acme\Jobs\JobsConnectionManage;
 class ExecuteMessage extends JobsConnectionManage
 {
     /**
-     * Undocumented variable
+     * Messages Line
      *
-     * @var [type]
+     * @var string
      */ 
     private $message;
 
     /**
      * Make connection
-     *
-     * @param string $message
+     * @return void
      */
     public function __construct()
     {
@@ -24,27 +23,30 @@ class ExecuteMessage extends JobsConnectionManage
     }
 
     /**
-     * Undocumented function
+     * Setting message
      *
      * @param string $message
      * @return void
      */
-    public function setMessage(string $message = '')
+    public function setMessage(string $message = '') : ExecuteMessage
     {
         $this->message = new AMQPMessage($message);
         return $this;
     }
 
+    /**
+     * Making Request
+     *
+     * @return void
+     */
     private function makeRequest()
     {
-        // make request
         $this->channel->queue_declare('SendRequestApi', false, false, false, false);
-
         $this->channel->basic_publish($this->message, '', 'SendRequestApi');
     }
 
     /**
-     * Undocumented function
+     * Making Request and Close the connection
      *
      * @return void
      */
@@ -53,6 +55,4 @@ class ExecuteMessage extends JobsConnectionManage
         $this->makeRequest();
         $this->closeConnection();
     }
-
-    
 }

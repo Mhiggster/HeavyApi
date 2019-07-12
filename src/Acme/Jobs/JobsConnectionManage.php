@@ -19,12 +19,20 @@ abstract class JobsConnectionManage
      */
     protected $channel;
 
+    /**
+     * Undocumented function
+     */
     public function __construct()
     {
         $this->connection = new AMQPConnection('localhost', '5672', 'guest', 'guest');
         $this->channel = $this->connection->channel();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function closeConnection()
     {
         $this->channel->close();

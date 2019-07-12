@@ -6,14 +6,29 @@ use Pool\Acme\Jobs\JobsConnectionManage;
 
 class CachingData extends JobsConnectionManage
 {
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     protected $garbage;
 
+    /**
+     * Undocumented function
+     *
+     * @param Garbage $garbage
+     */
     public function __construct(Garbage $garbage)
     {
         parent::__construct();
         $this->garbage = $garbage;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function makeRequest() {
         $this->channel->queue_declare('SendRequestApi', false, false, false, false);
         // научится отпровлять потверждение
@@ -35,6 +50,12 @@ class CachingData extends JobsConnectionManage
         $this->closeConnection();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $msg
+     * @return void
+     */
     public function handle($msg)
     {
         echo 'Hanle starts...' . "\n";

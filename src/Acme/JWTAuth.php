@@ -55,12 +55,23 @@ class JWTAuth
         $this->algorithm = 'RS256';
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param integer $user_id
+     * @return JWTAuth
+     */
     public function makePayload(int $user_id) : JWTAuth
     {
         $this->payload['user_id'] = $user_id;
         return $this;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function render()
     {
         http_response_code(403);
@@ -69,21 +80,34 @@ class JWTAuth
         ]);
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function encode()
     {
         return JWT::encode($this->payload, $this->privateKey, $this->algorithm);
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @param [type] $token
+     * @return void
+     */
     public function decode($token)
     {
         return JWT::decode($token, $this->publicKey, array($this->algorithm));
     }
 
-    // for what i dont remember хотя я вспомнил для статуса ответов
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function makeAnswer()
     {
-
+        // for what i dont remember хотя я вспомнил для статуса ответов
     }
 }
