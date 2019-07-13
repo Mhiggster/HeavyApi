@@ -16,12 +16,22 @@ class Home
     private $data;
 
     /**
+     * Undocumented variable
+     *
+     * @var string
+     */
+    private $path;
+
+    /**
      * Undocumented function
+     *
+     * @param Cache $cache
      */
     public function __construct(Cache $cache)
     {
         $this->logInit();
         $this->cache = $cache;
+        $this->path = __DIR__ . '/../Temp/home.php';
     }
 
     /**
@@ -54,7 +64,7 @@ class Home
                 'options' => $th,
             ]);
 
-            $this->path = __DIR__ . '/../../404.php';
+            $this->path = __DIR__ . '/../404.php';
             http_response_code (404);
         }
 

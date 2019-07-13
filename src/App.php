@@ -71,7 +71,7 @@ class App extends Application
     {
         $this->bindingContracts();
         $this->setInstances();
-
+        
         $this->selectRequest();
     }
 
