@@ -42,7 +42,6 @@ class Router
         $this->uri                = $_SERVER['REQUEST_URI'];
         $this->httpMethod         = $_SERVER['REQUEST_METHOD'];
         $this->controllerContains = '\Pool\Pages\\';
-
         $this->routeActions       = [];
     }
 

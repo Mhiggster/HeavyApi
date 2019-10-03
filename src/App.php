@@ -1,8 +1,8 @@
 <?php
 namespace Pool;
 
-use Pool\Acme\CronTask;
 use Pool\Acme\Router;
+use Pool\Acme\CronTask;
 use Pool\Acme\Application;
 use Illuminate\Container\Container;
 
@@ -71,34 +71,8 @@ class App extends Application
     {
         $this->bindingContracts();
         $this->setInstances();
-        
         $this->selectRequest();
     }
-
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    private function selectRequest()
-    {
-        if(isset($this->envRequest)) {
-            return $this->buildRouter();
-        }
-        $this->cron->runTasks();
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    private function buildRouter()
-    {
-        $this->container->call([$this->router, 'runRouter'], ['container' => $this->container]);
-    }
-
-        
 
     /**
      * Undocumented function
@@ -123,4 +97,26 @@ class App extends Application
         $this->router = $this->container->make(Router::class);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    private function selectRequest()
+    {
+        if(isset($this->envRequest)) {
+            return $this->buildRouter();
+        }
+        $this->cron->runTasks();
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    private function buildRouter()
+    {
+        $this->container->call([$this->router, 'runRouter'], ['container' => $this->container]);
+    }
 }
