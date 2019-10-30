@@ -1,10 +1,11 @@
 <?php
 namespace Pool;
 
-use Pool\Acme\Router;
-use Pool\Acme\CronTask;
-use Pool\Acme\Application;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Container\Container;
+use Pool\Acme\Application;
+use Pool\Acme\CronTask;
+use Pool\Acme\Router;
 
 class App extends Application
 {
@@ -58,7 +59,7 @@ class App extends Application
     public function __construct(Container $container)
     {
         $this->container = $container;
-        // throw the notice 
+        // throw the notice
         $this->envRequest = $_SERVER['SERVER_NAME'];
     }
 
@@ -66,6 +67,7 @@ class App extends Application
      * Bootstrapin our application
      *
      * @return void
+     * @throws BindingResolutionException
      */
     public function init()
     {
@@ -90,6 +92,7 @@ class App extends Application
      * Undocumented function
      *
      * @return void
+     * @throws BindingResolutionException
      */
     private function setInstances()
     {

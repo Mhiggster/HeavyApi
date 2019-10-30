@@ -49,6 +49,7 @@ class ExampleRequest implements Garbage
      *
      * @param [type] $msgIndex
      * @return void
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function makeRequest(string $message) : void
     {

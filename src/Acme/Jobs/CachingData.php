@@ -28,6 +28,7 @@ class CachingData extends JobsConnectionManage
      * Undocumented function
      *
      * @return void
+     * @throws \ErrorException
      */
     private function makeRequest() {
         $this->channel->queue_declare('SendRequestApi', false, false, false, false);
@@ -43,6 +44,7 @@ class CachingData extends JobsConnectionManage
      * Undocumented function
      *
      * @return void
+     * @throws \ErrorException
      */
     public function runExecute()
     {

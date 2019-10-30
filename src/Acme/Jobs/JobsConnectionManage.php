@@ -11,7 +11,7 @@ abstract class JobsConnectionManage
      * @var [type]
      */
     protected $connection;
-    
+
     /**
      * Undocumented variable
      *
@@ -32,6 +32,7 @@ abstract class JobsConnectionManage
      * Undocumented function
      *
      * @return void
+     * @throws \Exception
      */
     public function closeConnection()
     {
