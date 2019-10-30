@@ -45,8 +45,8 @@ class JWTAuth
      */
     public function __construct()
     {
-        $this->privateKey = file_get_contents(__DIR__ . '/../../keys/key.pem');
-        $this->publicKey = file_get_contents(__DIR__ . '/../../keys/public.pem');
+        $this->privateKey = file_get_contents(__DIR__ . '/../../keys/private_key.pem');
+        $this->publicKey = file_get_contents(__DIR__ . '/../../keys/public_key.pem');
 
         $this->payload = [
             "iss" => "unique.com",
