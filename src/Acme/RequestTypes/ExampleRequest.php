@@ -1,15 +1,15 @@
 <?php
-namespace Pool\Acme\Garbages;
+namespace Pool\Acme\RequestTypes;
 
 use GuzzleHttp\Client;
 use Pool\Contracts\Cache;
-use Pool\Contracts\Garbage;
+use Pool\Contracts\HeavyRequest;
 
 /**
- * TODO rename this class to Garbage
+ * TODO rename this class to HeavyRequest
  * TODO make like inteface and implements Example ApiRequest
  */
-class ExampleRequest implements Garbage
+class ExampleRequest implements HeavyRequest
 {
     /**
      * Undocumented variable

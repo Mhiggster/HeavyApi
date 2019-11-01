@@ -1,10 +1,16 @@
 <?php
 namespace Pool\Contracts;
 
+/**
+ * Interface Cache
+ * Main interface you can implement own services for cache
+ *
+ * @package Pool\Contracts
+ */
 interface Cache
 {
     /**
-     * Undocumented function
+     * If you want to put some data to cache you should use given method
      *
      * @return void
      */

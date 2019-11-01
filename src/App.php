@@ -7,64 +7,60 @@ use Pool\Acme\Application;
 use Pool\Acme\CronTask;
 use Pool\Acme\Router;
 
+/**
+ * Class App
+ * @package Pool
+ */
 class App extends Application
 {
     /**
-     * Undocumented variable
+     * Instance of Laravel Ioc Container
      *
-     * @var [type]
-     */
-    protected $publisher;
-
-    /**
-     * Undocumented variable
-     *
-     * @var [type]
+     * @var Container
      */
     private $container;
 
     /**
-     * Undocumented variable
-     *
-     * @var [type]
-     */
-    private $page;
-
-    /**
-     * Undocumented variable
+     * Cron task Instance
      *
      * @var [type]
      */
     private $cron;
 
     /**
-     * Undocumented variable
+     * FastRouter Instance
      *
-     * @var [type]
+     * @var \Pool\Acme\Router
      */
     private $router;
 
     /**
-     * Undocumented variable
+     * Environment request
+     *
+     * If we run our Application from bash terminal then
+     * Our request will be differ from Http Request
      *
      * @var [type]
      */
     private $envRequest;
 
     /**
-     * Undocumented function
+     * Init Our Application Ioc Container
      *
      * @param Container $container
      */
     public function __construct(Container $container)
     {
         $this->container = $container;
-        // throw the notice
         $this->envRequest = $_SERVER['SERVER_NAME'];
     }
 
     /**
-     * Bootstrapin our application
+     * Bootstrapping our application
+     *
+     * Firstly: We will run our contracts to render ever app interface
+     * Secondly: Creating Base Application Instance to Help working our app
+     * Third: Choose The correct Request
      *
      * @return void
      * @throws BindingResolutionException
@@ -77,14 +73,14 @@ class App extends Application
     }
 
     /**
-     * Undocumented function
+     * Bind the Interface with Class
      *
      * @return void
      */
     private function bindingContracts()
     {
         $this->container->bind(\Pool\Contracts\Cache::class, \Pool\Acme\Cache\Redis::class);
-        $this->container->bind(\Pool\Contracts\Garbage::class, \Pool\Acme\Garbages\ExampleRequest::class);
+        $this->container->bind(\Pool\Contracts\HeavyRequest::class, \Pool\Acme\RequestTypes\ExampleRequest::class);
         // $this->container->bind(\Psr\Http\Message\RequestInterface::class, \GuzzleHttp\Psr7\Request::class);
     }
 
@@ -96,7 +92,7 @@ class App extends Application
      */
     private function setInstances()
     {
-        $this->cron   = $this->container->make(CronTask::class);
+//        $this->cron   = $this->container->make(CronTask::class);
         $this->router = $this->container->make(Router::class);
     }
 

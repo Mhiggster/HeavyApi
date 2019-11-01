@@ -26,6 +26,7 @@ class Home
      * Undocumented function
      *
      * @param Cache $cache
+     * @throws \Exception
      */
     public function __construct(Cache $cache)
     {
@@ -57,10 +58,11 @@ class Home
             if( !file_exists($this->path) ) {
                 throw new \Exception('This file ' . $this->path . ' does not exists');
             }
-            $this->getData();
+//            $this->getData();
         } catch (\Throwable $th) {
             // Write log
-            $this->log->warning('Error From Show.php : ' . $th->getMessage(), [
+            dd($th->getMessage());
+            $this->log->warning('Error From Hone.php : ' . $th->getMessage(), [
                 'options' => $th,
             ]);
 

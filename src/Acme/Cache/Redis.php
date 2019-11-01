@@ -9,7 +9,7 @@ class Redis implements Cache
     private $client;
 
     /**
-     * Undocumented function
+     * Receiving Redis client
      *
      * @param Client $client
      */
@@ -19,7 +19,7 @@ class Redis implements Cache
     }
 
     /**
-     * Undocumented function
+     * Put data to the redis using redis setter
      *
      * @param string $key
      * @param string $data
@@ -31,7 +31,7 @@ class Redis implements Cache
     }
 
     /**
-     * Undocumented function
+     * Retrieve data from redis cache
      *
      * @param string $key
      * @return mixed
@@ -42,7 +42,7 @@ class Redis implements Cache
     }
 
     /**
-     * Undocumented function
+     * Flushing ever data from redis database
      *
      * @param string $key
      * @return void

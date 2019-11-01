@@ -1,7 +1,10 @@
 <?php
 namespace Pool\Contracts;
 
-interface Garbage
+interface HeavyRequest
 {
+    /**
+     * @param string $message
+     */
     public function makeRequest(string $message) : void;
 }

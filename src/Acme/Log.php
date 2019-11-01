@@ -24,10 +24,11 @@ trait Log
      * Undocumented function
      *
      * @return void
+     * @throws \Exception
      */
     protected function logInit()
     {
-        $this->logPath = __DIR__ . '/../../app.log';
+        $this->logPath = __DIR__  . '/../../app.log';
         $this->log = new Logger('name');
         $this->log->pushHandler(new StreamHandler($this->logPath, Logger::WARNING));
     }

@@ -1,7 +1,7 @@
 <?php
 namespace Pool\Acme\Jobs;
 
-use Pool\Contracts\Garbage;
+use Pool\Contracts\HeavyRequest;
 use Pool\Acme\Jobs\JobsConnectionManage;
 
 class CachingData extends JobsConnectionManage
@@ -16,9 +16,9 @@ class CachingData extends JobsConnectionManage
     /**
      * Undocumented function
      *
-     * @param Garbage $garbage
+     * @param HeavyRequest $garbage
      */
-    public function __construct(Garbage $garbage)
+    public function __construct(HeavyRequest $garbage)
     {
         parent::__construct();
         $this->garbage = $garbage;
