@@ -1,18 +1,26 @@
 <?php
 namespace Pool\Acme;
 
+use FastRoute\Dispatcher\GroupCountBased;
+use FastRoute\RouteCollector;
+use Illuminate\Container\Containe;
 use Illuminate\Container\Container;
 
-
+/**
+ * Class Router
+ * Simple Router Builder
+ *
+ * @package Pool\Acme
+ */
 class Router
 {
     /**
-     * URI Path 
-     * 
+     * URI Path
+     *
      * @var string
      */
     protected $uri;
-    
+
     /**
      * Method type
      *
@@ -47,10 +55,10 @@ class Router
 
     /**
      * Load our router rules
-     * 
-     * @param FastRoute\RouteCollector $router
+     *
+     * @param RouteCollector $router
      */
-    public function includeRoutes(\FastRoute\RouteCollector $router) : void
+    public function includeRoutes(RouteCollector $router) : void
     {
         try {
             require __DIR__ . '/../routes.php';
@@ -75,10 +83,10 @@ class Router
     /**
      * make handlers for next proccessing
      *
-     * @param \FastRoute\Dispatcher\GroupCountBased $dispatcher
+     * @param GroupCountBased $dispatcher
      * @return void
      */
-    private function dispatchingHandlers(\FastRoute\Dispatcher\GroupCountBased $dispatcher) : void
+    private function dispatchingHandlers(GroupCountBased $dispatcher) : void
     {
         $routeInfo = $dispatcher->dispatch($this->httpMethod, $this->uri);
 
@@ -98,14 +106,15 @@ class Router
 
     /**
      * Trimed uri and then make handlers
-     * 
-     * @param \FastRoute\Dispatcher\GroupCountBased $dispatcher
-     * @return \Pool\Acme\Router
+     *
+     * @param GroupCountBased $dispatcher
+     * @return Router
      */
-    public function setParams(\FastRoute\Dispatcher\GroupCountBased $dispatcher) : Router
+    public function setParams(GroupCountBased $dispatcher) : Router
     {
         $this->trimedUri();
         $this->dispatchingHandlers($dispatcher);
+
         return $this;
     }
 
@@ -117,31 +126,37 @@ class Router
      */
     public function callHandler($container) : void
     {
-        // get the controller and method
+        // Get the controller and method
         $controllerHandlers = reset($this->routeActions);
-        // get parametrs
+
+        // Get parametrs
         $paramsHandlers = end($this->routeActions);
-        // seperate the controller
+
+        // Separate the controller
         $explodeHandlers = explode('@', $controllerHandlers);
-        // controller class
+
+        // Controller class
         $controllerClass = $this->controllerContains . $explodeHandlers[0];
+
         // Method name
         $classMethod = $explodeHandlers[1];
-        // create controller instance
+
+        // Create controller instance
         $controllerClass = $container->make($controllerClass);
-        // call the desired controller with method and parametrs
+
+        // Call the desired controller with method and parametrs
         call_user_func_array(array($controllerClass, $classMethod), $paramsHandlers);
     }
 
     /**
      * Inlclude routes and calling necessary controller
      *
-     * @param \Illuminate\Container\Containe $container
+     * @param Container $container
      * @return void
      */
     public function runRouter(Container $container) : void
     {
-        $dispatcher = \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $router) {
+        $dispatcher = \FastRoute\simpleDispatcher(function(RouteCollector $router) {
             $this->includeRoutes($router);
         });
         // call route
