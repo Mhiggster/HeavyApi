@@ -68,7 +68,7 @@ class App extends Application
     public function init()
     {
         $this->bindingContracts();
-        $this->setInstances();
+        $this->setAppInstances();
         $this->selectRequest();
     }
 
@@ -85,21 +85,25 @@ class App extends Application
     }
 
     /**
-     * Undocumented function
+     * Put base application classes to Ioc container
      *
      * @return void
      * @throws BindingResolutionException
      */
-    private function setInstances()
+    private function setAppInstances()
     {
-//        $this->cron   = $this->container->make(CronTask::class);
         $this->router = $this->container->make(Router::class);
+//        $this->cron   = $this->container->make(CronTask::class);
     }
 
     /**
-     * Undocumented function
+     * If our request coming from HTTP request
+     * We run our application using FastRouter and Simple MVC pattern
+     * Or If request coming from bash we run cronTask's action
      *
-     * @return void
+     * In fact, the launch of our application starts from here.
+     *
+     * @return mixed
      */
     private function selectRequest()
     {
@@ -110,7 +114,8 @@ class App extends Application
     }
 
     /**
-     * Undocumented function
+     * Building your own router
+     * It's Like director for builder design pattern
      *
      * @return void
      */

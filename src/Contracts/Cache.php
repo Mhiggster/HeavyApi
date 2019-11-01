@@ -12,20 +12,24 @@ interface Cache
     /**
      * If you want to put some data to cache you should use given method
      *
+     * @param string $key
+     * @param string $data
      * @return void
      */
     public function set(string $key, string $data) : void;
 
     /**
-     * Undocumented function
+     * Retrieve our data from cache
      *
-     * @return void
+     * @param string $key
+     * @return string|null
      */
     public function get(string $key) : ?string;
 
     /**
-     * Undocumented function
+     * Clear every data from cache
      *
+     * @param string $key
      * @return void
      */
     public function clear(string $key) : void;
