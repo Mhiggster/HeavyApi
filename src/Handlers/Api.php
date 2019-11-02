@@ -1,5 +1,5 @@
 <?php
-namespace Pool\Pages;
+namespace Pool\Handlers;
 
 use Psr\Http\Message\RequestInterface;
 use Pool\Acme\JWTAuth;

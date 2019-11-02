@@ -49,7 +49,7 @@ class Router
     {
         $this->uri                = $_SERVER['REQUEST_URI'];
         $this->httpMethod         = $_SERVER['REQUEST_METHOD'];
-        $this->controllerContains = '\Pool\Pages\\';
+        $this->controllerContains = '\Pool\Handlers\\';
         $this->routeActions       = [];
     }
 
@@ -81,7 +81,7 @@ class Router
     }
 
     /**
-     * make handlers for next proccessing
+     * make handlers for next processing
      *
      * @param GroupCountBased $dispatcher
      * @return void
@@ -149,7 +149,7 @@ class Router
     }
 
     /**
-     * Inlclude routes and calling necessary controller
+     * Include routes and calling necessary controller
      *
      * @param Container $container
      * @return void

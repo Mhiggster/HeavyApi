@@ -11,11 +11,15 @@ class Redis implements Cache
     /**
      * Receiving Redis client
      *
-     * @param Client $client
+     *
      */
-    public function __construct(Client $client)
+    public function __construct()
     {
-        $this->client = $client;
+        $this->client = new Client([
+            'scheme' => 'tcp',
+            'host'   => 'redis',
+            'port'   => 6379,
+        ]);
     }
 
     /**
