@@ -2,8 +2,8 @@
 # especially for the enterprises that we, the RabbitMQ team, have to deal with
 FROM ubuntu:18.04
 
-ENV http_proxy "http://192.168.7.90:3128"
-ENV https_proxy "http://192.168.7.90:3128"
+#ENV http_proxy "http://192.168.7.90:3128"
+#ENV https_proxy "http://192.168.7.90:3128"
 
 RUN set -eux; \
     apt-get update; \

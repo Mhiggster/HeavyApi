@@ -30,3 +30,11 @@ services:
       - 5672:5672
       - 15672:15672
     hostname: localrab
+  redis:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+#    environment:
+#      REDIS_HOST: 127.0.0.1
+    ports:
+      - 6379:6379
