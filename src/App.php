@@ -93,7 +93,7 @@ class App extends Application
     private function setAppInstances()
     {
         $this->router = $this->container->make(Router::class);
-//        $this->cron   = $this->container->make(CronTask::class);
+        $this->cron   = $this->container->make(CronTask::class);
     }
 
     /**

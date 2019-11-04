@@ -7,7 +7,7 @@ use Pool\Contracts\HeavyRequest;
 
 /**
  * TODO rename this class to HeavyRequest
- * TODO make like inteface and implements Example ApiRequest
+ * TODO make like interface and implements Example ApiRequest
  */
 class ExampleRequest implements HeavyRequest
 {
@@ -53,15 +53,15 @@ class ExampleRequest implements HeavyRequest
      */
     public function makeRequest(string $message) : void
     {
-        $moviesOutput = [];
-
-        for ($i = 1; $i < 90; $i++) {
-            $movies = $this->guzzle->request('GET', 'http://api.themoviedb.org/3/discover/movie?api_key=' . $this->api_key . '&primary_release_date.gte=2018-01-03&page=' . $i);
-            $results = json_decode( $movies->getBody()->getContents() )->results;
-            $lastMovieInThisPage = $results[count($results) - 1];
-            $moviesOutput[] = $lastMovieInThisPage;
-        }
-        $this->cache->set('movies', json_encode($moviesOutput));
-        // $this->cache->clear('movies');
+//        $moviesOutput = [];
+//
+//        for ($i = 1; $i < 90; $i++) {
+//            $movies = $this->guzzle->request('GET', 'http://api.themoviedb.org/3/discover/movie?api_key=' . $this->api_key . '&primary_release_date.gte=2018-01-03&page=' . $i);
+//            $results = json_decode( $movies->getBody()->getContents() )->results;
+//            $lastMovieInThisPage = $results[count($results) - 1];
+//            $moviesOutput[] = $lastMovieInThisPage;
+//        }
+//        $this->cache->set('movies', json_encode($moviesOutput));
+         $this->cache->clear('movies');
     }
 }

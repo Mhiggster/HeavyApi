@@ -24,7 +24,7 @@ abstract class JobsConnectionManage
      */
     public function __construct()
     {
-        $this->connection = new AMQPStreamConnection('localrab', '5672', 'guest', 'guest');
+        $this->connection = new AMQPStreamConnection('rabbitmq', '5672', 'guest', 'guest');
         $this->channel = $this->connection->channel();
     }
 
